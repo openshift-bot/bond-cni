@@ -1,9 +1,9 @@
-FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.26-openshift-5.0 AS rhel9
+FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.26-openshift-5.1 AS rhel9
 WORKDIR /go/src/github.com/openshift/bond-cni
 COPY . .
 RUN go build --mod=vendor -ldflags '-s -w' -o ./bin/bond ./bond/
 
-FROM registry.ci.openshift.org/ocp/5.0:base-rhel9
+FROM registry.ci.openshift.org/ocp/5.1:base-rhel9
 LABEL io.k8s.display-name="bond-cni" \
     io.k8s.description="This is an image containing the bond-cni executable" \
     io.openshift.tags="openshift"
